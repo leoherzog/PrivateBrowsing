@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <meta name="description" content="What is an Incognito Window/Private Browsing and how do I use it?" />
+    <meta name="keywords" content="web, browser, settings, code, tracking, analytics, js, developer" />
+    <meta name="author" content="Leo Herzog | herzog.tech" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@next/css/pico.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@next/css/pico.colors.min.css">
+    <script async src="https://kit.fontawesome.com/24afb12102.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bowser@2/es5.min.js"></script>
+    <title>Private Browsing</title>
+    <style>
+      html {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+      #source {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+      }
+      #desktop, #tablet, #mobile, #tv {
+        visibility: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <article>
+        <header>
+          <h1 id="title">
+            <span class="fa-solid fa-user-secret"></span> What is <span class="featurename">Private Browsing Mode</span>?
+          </h1>
+        </header>
+        <p id="supported"></p>
+        <p>
+          <span class="featurename">Private Browsing mode</span> (sometimes called &ldquo;<span class="othername">Incognito Mode</span>&rdquo;) is a feature of modern web browsers that allows you to browse the web without leaving any trace of your activity on your computer.
+          It's a separate window in your web browser where you're not logged into any of your websites. It's as if it's a fresh computer, every time you open it!
+          When you close that window, all of your history and cookies from that browsing is immediately deleted.
+          This is great for things like shopping for gifts, quickly checking on another email account, or when using a public computer.
+        </p>
+        <p>
+          Learn more about <a href="https://support.mozilla.org/en-US/kb/common-myths-about-private-browsing" target="_blank">what <span class="featurename">Private Browsing mode</span> can and cannot do</a>.
+        </p>
+      </article>
+      <div id="desktop" role="group">
+        <button id="chrome"><span class="fa-brands fa-chrome"></span> Google Chrome</button>
+        <button id="firefox"><span class="fa-brands fa-firefox-browser"></span> Mozilla Firefox</button>
+        <button id="safari"><span class="fa-brands fa-safari"></span> Apple Safari</button>
+        <button id="edge"><span class="fa-brands fa-edge"></span> Microsoft Edge</button>
+      </div>
+    </main>
+    <div>
+      <a href="https://github.com/leoherzog/PrivateBrowsing" target="_blank" aria-label="View source code">
+        <svg id="source" height="32" viewBox="0 0 16 16" version="1.1" width="32">
+          <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+        </svg>
+      </a>
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+
+        const browser = bowser.getParser(window.navigator.userAgent);
+        let supported = browser.satisfies({
+          "internet explorer": ">=8",
+          "chrome": ">=0.3",
+          "firefox": ">=3.5",
+          "opera": ">=22",
+          "edge": "*"
+        });
+        console.log(browser);
+
+        let browsername = browser.parsedResult.browser.name;
+        let browserversion = browser.parsedResult.browser.version;
+        let browsericon;
+        switch(browser.parsedResult.browser.name) {
+          case 'Chrome':
+          case 'Chromium':
+          case 'Electron':
+            browsericon = 'fa-brands fa-chrome';
+            break;
+          case 'Firefox':
+            browsericon = 'fa-brands fa-firefox-browser';
+            break;
+          case 'Safari':
+            browsericon = 'fa-brands fa-safari';
+            break;
+          case 'Edge':
+            browsericon = 'fa-brands fa-edge';
+            break;
+          case 'Internet Explorer':
+            browsericon = 'fa-brands fa-internet-explorer';
+            break;
+          case 'Opera':
+            browsericon = 'fa-brands fa-opera';
+            break;
+          default:
+            browsericon = 'fa-duotone fa-browser';
+        }
+        let browserstring = '<span class="' + browsericon + '"></span> ' + browsername + ' ' + browserversion;
+        let featurename = 'Private Browsing Mode';
+        let othername = 'Incognito Mode';
+        if (browser.parsedResult.browser.name === 'Chrome') {
+          featurename = 'Incognito Mode';
+          othername = 'Private Browsing Mode';
+        }
+        
+        Array.from(document.getElementsByClassName('featurename')).forEach(function(element) {
+          element.innerHTML = featurename;
+        });
+        Array.from(document.getElementsByClassName('othername')).forEach(function(element) {
+          element.innerHTML = othername;
+        });
+
+        document.getElementById('supported').innerHTML = 'Your web browser, <strong>' + browserstring + '</strong>, ' + (supported ? ' supports ' : ' does not support ') + featurename + '.';
+        if (!supported) document.getElementById('supported').innerHTML += ' <a href="https://browsehappy.com/" target="_blank">Upgrade to a more modern web browser</a>'.
+
+        document.getElementById(browser.parsedResult.platform.type).style.visibility = 'visible';
+        document.getElementById(browser.parsedResult.browser.name.toLowerCase()).classList.add('contrast');
+        document.getElementById(browser.parsedResult.browser.name.toLowerCase()).focus();
+      });
+    </script>
+  </body>
+</html>
