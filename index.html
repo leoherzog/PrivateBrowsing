@@ -19,7 +19,8 @@
         justify-content: center;
         text-align: center;
       }
-      header > h1 {
+      header > h1,
+      header > h2 {
         margin: 0;
       }
       mark {
@@ -61,24 +62,24 @@
           <span class="featurename">Private Browsing mode</span> (sometimes called &ldquo;<span class="othername">Incognito Mode</span>&rdquo;) is a window that you can open in
           <select id="browser" style="width: fit-content; padding: 2px 48px 2px 8px; margin: 0px">
             <option disabled>Mobile</option>
-            <option id="mobile-safari">Safari for iOS</option>
-            <option id="mobile-chrome">Google Chrome</option>
-            <option id="mobile-firefox">Mozilla Firefox</option>
-            <option id="mobile-other">Other Mobile Browsers</option>
+            <option id="mobile-safari" data-icon="fa-brands fa-safari">Safari for iOS</option>
+            <option id="mobile-chrome" data-icon="fa-brands fa-chrome">Google Chrome</option>
+            <option id="mobile-firefox" data-icon="fa-brands fa-firefox-browser">Mozilla Firefox</option>
+            <option id="mobile-other" data-icon="fa-solid fa-mobile">Other Mobile Browsers</option>
             <hr />
             <option disabled>Tablet</option>
-            <option id="tablet-safari">Safari for iPad</option>
-            <option id="tablet-chrome">Google Chrome</option>
-            <option id="tablet-firefox">Mozilla Firefox</option>
-            <option id="tablet-silk">Silk Browser for Kindle</option>
-            <option id="tablet-other">Other Tablet Browsers</option>
+            <option id="tablet-safari" data-icon="fa-brands fa-safari">Safari for iPad</option>
+            <option id="tablet-chrome" data-icon="fa-brands fa-chrome">Google Chrome</option>
+            <option id="tablet-firefox" data-icon="fa-brands fa-firefox-browser">Mozilla Firefox</option>
+            <option id="tablet-silk" data-icon="fa-brands fa-amazon">Silk Browser for Kindle</option>
+            <option id="tablet-other" data-icon="fa-solid fa-tablet">Other Tablet Browsers</option>
             <hr />
             <option disabled>Desktop</option>
-            <option id="desktop-chrome">Google Chrome</option>
-            <option id="desktop-firefox">Mozilla Firefox</option>
-            <option id="desktop-safari">Safari</option>
-            <option id="desktop-microsoft-edge">Microsoft Edge</option>
-            <option id="desktop-other">Other Desktop Browsers</option>
+            <option id="desktop-chrome" data-icon="fa-brands fa-chrome">Google Chrome</option>
+            <option id="desktop-firefox" data-icon="fa-brands fa-firefox-browser">Mozilla Firefox</option>
+            <option id="desktop-safari" data-icon="fa-brands fa-safari">Safari</option>
+            <option id="desktop-microsoft-edge" data-icon="fa-brands fa-edge">Microsoft Edge</option>
+            <option id="desktop-other" data-icon="fa-solid fa-laptop">Other Desktop Browsers</option>
           </select>
           where you're not logged into any websites. It's as if that window is a brand new computer, every time you open it! When you close that window, all of your history and cookies from that browsing session are immediately deleted. This is great for things like secret shopping for gifts,
           quickly checking on another email account, or when using a public computer.
@@ -89,6 +90,9 @@
       </article>
 
       <article>
+        <header>
+          <h2 id="instructionsheader"></h2>
+        </header>
         <section class="instructions" id="instructions-desktop-chrome">
           <p>
             Click the <mark><span class="fa-solid fa-ellipsis-vertical">⋮</span></mark> three-dots menu in the top right corner of your browser and click <mark>New Incognito Window</mark>
@@ -316,7 +320,9 @@
         });
 
         let browserhowtosearchquery = 'https://www.google.com/search?q=' + browsername.replaceAll(' ', '+') + '+' + browserversion + '+How+to+Private+Browse';
-        document.getElementsByClassName('browserhowtosearchquery')[0].href = browserhowtosearchquery;
+        Array.from(document.getElementsByClassName('browserhowtosearchquery')).forEach(function (element) {
+          element.href = browserhowtosearchquery;
+        });
         if (supported) {
           document.getElementById('supported').innerHTML = '<abbr title="' + browserstring + '" data-tooltip="' + browserstring + '">Your web browser</abbr> supports ' + featurename;
         } else {
@@ -342,13 +348,16 @@
         } else {
           document.getElementById(platform + '-other').selected = true;
         }
+        document.getElementById('instructionsheader').innerHTML = '<span class="' + browserbutton.dataset.icon + '"></span> ' + browserbutton.value;
         document.getElementById('instructions-' + platformplusbrowser).style.display = 'block';
 
         document.getElementById('browser').addEventListener('change', function (e) {
+          let selection = e.srcElement.selectedOptions[0];
+          document.getElementById('instructionsheader').innerHTML = '<span class="' + selection.dataset.icon + '"></span> ' + selection.value;
           Array.from(document.getElementsByClassName('instructions')).forEach(function (element) {
             element.style.display = 'none';
           });
-          document.getElementById('instructions-' + e.srcElement.selectedOptions[0].id).style.display = 'block';
+          document.getElementById('instructions-' + selection.id).style.display = 'block';
         });
       });
 
