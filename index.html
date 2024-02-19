@@ -65,21 +65,21 @@
             <option id="mobile-safari" data-icon="fa-brands fa-safari">Safari for iOS</option>
             <option id="mobile-chrome" data-icon="fa-brands fa-chrome">Google Chrome</option>
             <option id="mobile-firefox" data-icon="fa-brands fa-firefox-browser">Mozilla Firefox</option>
-            <option id="mobile-other" data-icon="fa-solid fa-mobile">Other Mobile Browsers</option>
+            <option id="mobile-other" data-icon="fa-regular fa-mobile">Other Mobile Browsers</option>
             <hr />
             <option disabled>Tablet</option>
             <option id="tablet-safari" data-icon="fa-brands fa-safari">Safari for iPad</option>
             <option id="tablet-chrome" data-icon="fa-brands fa-chrome">Google Chrome</option>
             <option id="tablet-firefox" data-icon="fa-brands fa-firefox-browser">Mozilla Firefox</option>
             <option id="tablet-silk" data-icon="fa-brands fa-amazon">Silk Browser for Kindle</option>
-            <option id="tablet-other" data-icon="fa-solid fa-tablet">Other Tablet Browsers</option>
+            <option id="tablet-other" data-icon="fa-regular fa-tablet">Other Tablet Browsers</option>
             <hr />
             <option disabled>Desktop</option>
             <option id="desktop-chrome" data-icon="fa-brands fa-chrome">Google Chrome</option>
             <option id="desktop-firefox" data-icon="fa-brands fa-firefox-browser">Mozilla Firefox</option>
             <option id="desktop-safari" data-icon="fa-brands fa-safari">Safari</option>
             <option id="desktop-microsoft-edge" data-icon="fa-brands fa-edge">Microsoft Edge</option>
-            <option id="desktop-other" data-icon="fa-solid fa-laptop">Other Desktop Browsers</option>
+            <option id="desktop-other" data-icon="fa-regular fa-laptop">Other Desktop Browsers</option>
           </select>
           where you're not logged into any websites. It's as if that window is a brand new computer, every time you open it! When you close that window, all of your history and cookies from that browsing session are immediately deleted. This is great for things like secret shopping for gifts,
           quickly checking on another email account, or when using a public computer.
@@ -334,11 +334,7 @@
         if (os && os === 'Chrome OS') platform = 'desktop'; // https://github.com/bowser-js/bowser/issues/357
 
         Array.from(document.getElementsByClassName('modifier')).forEach(function (element) {
-          if (os === 'macOS') {
-            element.innerText = '⌘';
-          } else {
-            element.innerText = 'Ctrl';
-          }
+          element.innerText = os === 'macOS' ? '⌘' : 'Ctrl';
         });
 
         let platformplusbrowser = platform + '-' + browsername.replaceAll(' ', '-').toLowerCase();
