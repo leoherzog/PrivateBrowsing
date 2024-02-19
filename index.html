@@ -41,15 +41,6 @@
         display: none;
         padding: 0 10rem;
       }
-      @media (max-width: 768px) {
-        div[role='group'] {
-          flex-direction: column;
-          border-radius: 0;
-        }
-        div[role='group'] > button {
-          border-radius: 0;
-        }
-      }
     </style>
   </head>
   <body>
@@ -60,7 +51,7 @@
         </header>
         <p>
           <span class="featurename">Private Browsing mode</span> (sometimes called &ldquo;<span class="othername">Incognito Mode</span>&rdquo;) is a window that you can open in
-          <select id="browser" style="width: fit-content; padding: 2px 48px 2px 8px; margin: 0px">
+          <select id="browser" style="width: fit-content; padding: 2px 48px 2px 8px; margin: 0px" aria-label="Choose your browser">
             <option disabled>Mobile</option>
             <option id="mobile-safari" data-icon="fa-brands fa-safari">Safari for iOS</option>
             <option id="mobile-chrome" data-icon="fa-brands fa-chrome">Google Chrome</option>
