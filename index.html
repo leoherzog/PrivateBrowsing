@@ -7,6 +7,7 @@
     <meta name="keywords" content="web, browser, settings, code, tracking, analytics, js, developer" />
     <meta name="author" content="Leo Herzog | herzog.tech" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.purple.min.css" />
+    <link rel="icon" href="favicon.svg" />
     <script async src="https://kit.fontawesome.com/24afb12102.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bowser@2/bundled.min.js"></script>
     <title>What is Private Browsing?</title>
@@ -22,6 +23,17 @@
       header > h1,
       header > h2 {
         margin: 0;
+      }
+      #instructionsheader {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+      #instructionsheader > select {
+        width: fit-content;
+        margin: 0;
+        font-size: inherit;
       }
       mark {
         white-space: nowrap;
@@ -44,27 +56,7 @@
           <h1 id="supported">Loading...</h1>
         </header>
         <p>
-          <span class="featurename">Private Browsing mode</span> (sometimes called &ldquo;<span class="othername">Incognito Mode</span>&rdquo;) is a window that you can open in
-          <select id="browser" style="width: fit-content; padding: 2px 48px 2px 8px; margin: 0px" aria-label="Choose your browser">
-            <option disabled>Mobile</option>
-            <option id="mobile-safari" data-icon="fa-brands fa-safari">Safari for iOS</option>
-            <option id="mobile-chrome" data-icon="fa-brands fa-chrome">Google Chrome</option>
-            <option id="mobile-firefox" data-icon="fa-brands fa-firefox-browser">Mozilla Firefox</option>
-            <option id="mobile-other" data-icon="fa-regular fa-mobile">Other Mobile Browsers</option>
-            <option disabled>Tablet</option>
-            <option id="tablet-safari" data-icon="fa-brands fa-safari">Safari for iPad</option>
-            <option id="tablet-chrome" data-icon="fa-brands fa-chrome">Google Chrome</option>
-            <option id="tablet-firefox" data-icon="fa-brands fa-firefox-browser">Mozilla Firefox</option>
-            <option id="tablet-silk" data-icon="fa-brands fa-amazon">Silk Browser for Kindle</option>
-            <option id="tablet-other" data-icon="fa-regular fa-tablet">Other Tablet Browsers</option>
-            <option disabled>Desktop</option>
-            <option id="desktop-chrome" data-icon="fa-brands fa-chrome">Google Chrome</option>
-            <option id="desktop-firefox" data-icon="fa-brands fa-firefox-browser">Mozilla Firefox</option>
-            <option id="desktop-safari" data-icon="fa-brands fa-safari">Safari</option>
-            <option id="desktop-microsoft-edge" data-icon="fa-brands fa-edge">Microsoft Edge</option>
-            <option id="desktop-other" data-icon="fa-regular fa-laptop">Other Desktop Browsers</option>
-          </select>
-          where you're not logged into any websites. It's as if that window is a brand new computer, every time you open it! When you close that window, all of your history and cookies from that browsing session are immediately deleted. This is great for things like secret shopping for gifts,
+          <span class="featurename">Private Browsing mode</span> (sometimes called &ldquo;<span class="othername">Incognito Mode</span>&rdquo;) is a window that you can open in your web browser where you're not logged into any websites. It's as if that window is a brand new computer, every time you open it! When you close that window, all of your history and cookies from that browsing session are immediately deleted. This is great for things like secret shopping for gifts,
           quickly checking on another email account, or when using a public computer.
         </p>
         <p>
@@ -74,7 +66,28 @@
 
       <article>
         <header>
-          <h2 id="instructionsheader"></h2>
+          <h2 id="instructionsheader">
+            <span id="instructionsheadericon"></span>
+            <select id="browser" aria-label="Choose your browser">
+              <option disabled>Mobile</option>
+              <option id="mobile-safari" data-icon="fa-brands fa-safari">Safari for iOS</option>
+              <option id="mobile-chrome" data-icon="fa-brands fa-chrome">Google Chrome</option>
+              <option id="mobile-firefox" data-icon="fa-brands fa-firefox-browser">Mozilla Firefox</option>
+              <option id="mobile-other" data-icon="fa-regular fa-mobile">Other Mobile Browsers</option>
+              <option disabled>Tablet</option>
+              <option id="tablet-safari" data-icon="fa-brands fa-safari">Safari for iPad</option>
+              <option id="tablet-chrome" data-icon="fa-brands fa-chrome">Google Chrome</option>
+              <option id="tablet-firefox" data-icon="fa-brands fa-firefox-browser">Mozilla Firefox</option>
+              <option id="tablet-silk" data-icon="fa-brands fa-amazon">Silk Browser for Kindle</option>
+              <option id="tablet-other" data-icon="fa-regular fa-tablet">Other Tablet Browsers</option>
+              <option disabled>Desktop</option>
+              <option id="desktop-chrome" data-icon="fa-brands fa-chrome">Google Chrome</option>
+              <option id="desktop-firefox" data-icon="fa-brands fa-firefox-browser">Mozilla Firefox</option>
+              <option id="desktop-safari" data-icon="fa-brands fa-safari">Safari</option>
+              <option id="desktop-microsoft-edge" data-icon="fa-brands fa-edge">Microsoft Edge</option>
+              <option id="desktop-other" data-icon="fa-regular fa-laptop">Other Desktop Browsers</option>
+            </select>
+          </h2>
         </header>
         <section class="instructions" id="instructions-desktop-chrome">
           <p>
@@ -216,101 +229,83 @@
         let browsername = browser.parsedResult?.browser?.name;
         if (window.navigator.brave) browsername = 'Brave'; // ugh
         let browserversion = browser.parsedResult?.browser?.version;
-        let browsericon;
-        switch (browsername) {
-          case 'Chrome':
-          case 'Chromium':
-          case 'Electron':
-            browsericon = 'fa-brands fa-chrome';
-            break;
-          case 'Firefox':
-            browsericon = 'fa-brands fa-firefox-browser';
-            break;
-          case 'Safari':
-            browsericon = 'fa-brands fa-safari';
-            break;
-          case 'Opera':
-            browsericon = 'fa-brands fa-opera';
-            break;
-          case 'Microsoft Edge':
-            browsericon = 'fa-brands fa-edge';
-            break;
-          case 'Internet Explorer':
-            browsericon = 'fa-brands fa-internet-explorer';
-            break;
-          default:
-            browsericon = 'fa-duotone fa-browser';
-        }
-        let browserstring = browsername + ' ' + browserversion;
-        let featurename, othernames;
-        switch (browsername) {
-          case 'Chrome':
-          case 'Chromium':
-          case 'Electron':
-            featurename = 'Incognito Mode';
-            othername = 'Private Browsing Mode';
-            break;
-          case 'Firefox':
-          case 'Safari':
-          case 'Opera':
-          case 'Amazon Silk':
-            featurename = 'Private Browsing Mode';
-            othername = 'Incognito Mode';
-            break;
-          case 'Microsoft Edge':
-          case 'Internet Explorer':
-            featurename = 'InPrivate Mode';
-            othername = 'Private Browsing Mode&rdquo; or &ldquo;Incognito Mode';
-            break;
-          case 'Vivaldi':
-            featurename = 'Private Window';
-            othername = 'Incognito Window';
-          default:
-            featurename = 'Private Browsing Mode';
-            othername = 'Incognito Mode';
-        }
-        switch (browsername) {
-          case 'Chrome':
-          case 'Chromium':
-          case 'Electron':
-            document.getElementById('moreinfo').href = 'https://support.google.com/chrome/answer/9845881';
-            break;
-          case 'Firefox':
-            document.getElementById('moreinfo').href = 'https://support.mozilla.org/en-US/kb/common-myths-about-private-browsing';
-            break;
-          case 'Safari':
-            document.getElementById('moreinfo').href = 'https://support.apple.com/guide/safari/browse-privately-ibrw1069/mac';
-            break;
-          case 'Opera':
-            document.getElementById('moreinfo').href = 'https://help.opera.com/en/touch/private-mode/';
-            break;
-          case 'Microsoft Edge':
-          case 'Internet Explorer':
-            document.getElementById('moreinfo').href = 'https://www.microsoft.com/en-us/edge/learning-center/private-browsing';
-            break;
-          default:
-            document.getElementById('moreinfo').href = 'https://en.wikipedia.org/wiki/Privacy_mode';
-        }
+        const applyBrowser = (name, version) => {
+          let featurename, othername;
+          switch (name) {
+            case 'Chrome':
+            case 'Chromium':
+            case 'Electron':
+              featurename = 'Incognito Mode';
+              othername = 'Private Browsing Mode';
+              break;
+            case 'Firefox':
+            case 'Safari':
+            case 'Opera':
+            case 'Amazon Silk':
+              featurename = 'Private Browsing Mode';
+              othername = 'Incognito Mode';
+              break;
+            case 'Microsoft Edge':
+            case 'Internet Explorer':
+              featurename = 'InPrivate Mode';
+              othername = 'Private Browsing Mode” or “Incognito Mode';
+              break;
+            case 'Vivaldi':
+              featurename = 'Private Window';
+              othername = 'Incognito Window';
+              break;
+            default:
+              featurename = 'Private Browsing Mode';
+              othername = 'Incognito Mode';
+          }
+          let moreinfoHref;
+          switch (name) {
+            case 'Chrome':
+            case 'Chromium':
+            case 'Electron':
+              moreinfoHref = 'https://support.google.com/chrome/answer/9845881';
+              break;
+            case 'Firefox':
+              moreinfoHref = 'https://support.mozilla.org/en-US/kb/common-myths-about-private-browsing';
+              break;
+            case 'Safari':
+              moreinfoHref = 'https://support.apple.com/guide/safari/browse-privately-ibrw1069/mac';
+              break;
+            case 'Opera':
+              moreinfoHref = 'https://help.opera.com/en/touch/private-mode/';
+              break;
+            case 'Microsoft Edge':
+            case 'Internet Explorer':
+              moreinfoHref = 'https://www.microsoft.com/en-us/edge/learning-center/private-browsing';
+              break;
+            default:
+              moreinfoHref = 'https://en.wikipedia.org/wiki/Privacy_mode';
+          }
+          document.getElementById('moreinfo').href = moreinfoHref;
+          Array.from(document.getElementsByClassName('browsername')).forEach((el) => (el.innerText = name));
+          Array.from(document.getElementsByClassName('featurename')).forEach((el) => (el.innerText = featurename));
+          Array.from(document.getElementsByClassName('othername')).forEach((el) => (el.innerText = othername));
 
-        Array.from(document.getElementsByClassName('browsername')).forEach(function (element) {
-          element.innerText = browsername;
-        });
-        Array.from(document.getElementsByClassName('featurename')).forEach(function (element) {
-          element.innerText = featurename;
-        });
-        Array.from(document.getElementsByClassName('othername')).forEach(function (element) {
-          element.innerText = othername;
-        });
-
-        let browserhowtosearchquery = 'https://www.google.com/search?q=' + browsername.replaceAll(' ', '+') + '+' + browserversion + '+How+to+Private+Browse';
-        Array.from(document.getElementsByClassName('browserhowtosearchquery')).forEach(function (element) {
-          element.href = browserhowtosearchquery;
-        });
-        if (supported) {
-          document.getElementById('supported').innerHTML = '<abbr title="' + browserstring + '" data-tooltip="' + browserstring + '">Your web browser</abbr> supports ' + featurename;
-        } else {
-          document.getElementById('supported').innerHTML = 'It is unknown if your web browser (<strong>' + browserstring + '</strong>) supports ' + featurename + '. <a href="' + browserhowtosearchquery + '" target="_blank">Search for more information</a>.';
-        }
+          const browserstring = version ? name + ' ' + version : name;
+          const searchQuery = 'https://www.google.com/search?q=' + name.replaceAll(' ', '+') + (version ? '+' + version : '') + '+How+to+Private+Browse';
+          Array.from(document.getElementsByClassName('browserhowtosearchquery')).forEach((el) => (el.href = searchQuery));
+          if (supported) {
+            document.getElementById('supported').innerHTML = '<abbr title="' + browserstring + '" data-tooltip="' + browserstring + '">Your web browser</abbr> supports ' + featurename;
+          } else {
+            document.getElementById('supported').innerHTML = 'It is unknown if your web browser (<strong>' + browserstring + '</strong>) supports ' + featurename + '. <a href="' + searchQuery + '" target="_blank">Search for more information</a>.';
+          }
+        };
+        const browserFromOptionId = (optionId) => {
+          const slug = optionId.split('-').slice(1).join('-');
+          switch (slug) {
+            case 'chrome': return 'Chrome';
+            case 'firefox': return 'Firefox';
+            case 'safari': return 'Safari';
+            case 'microsoft-edge': return 'Microsoft Edge';
+            case 'silk': return 'Amazon Silk';
+            default: return null;
+          }
+        };
 
         let os = browser.parsedResult?.os?.name;
         let platform = browser.parsedResult?.platform?.type;
@@ -320,24 +315,23 @@
           element.innerText = os === 'macOS' ? '⌘' : 'Ctrl';
         });
 
-        let platformplusbrowser = platform + '-' + browsername.replaceAll(' ', '-').toLowerCase();
-        let browserbutton = document.getElementById(platformplusbrowser);
-        if (browserbutton) {
-          browserbutton.selected = true;
-        } else {
-          document.getElementById(platform + '-other').selected = true;
-        }
-        document.getElementById('instructionsheader').innerHTML = '<span class="' + browserbutton.dataset.icon + '"></span> ' + browserbutton.value;
-        document.getElementById('instructions-' + platformplusbrowser).style.display = 'block';
-
-        document.getElementById('browser').addEventListener('change', function (e) {
-          let selection = e.srcElement.selectedOptions[0];
-          document.getElementById('instructionsheader').innerHTML = '<span class="' + selection.dataset.icon + '"></span> ' + selection.value;
+        const browserSelect = document.getElementById('browser');
+        browserSelect.addEventListener('change', function () {
+          let selection = browserSelect.selectedOptions[0];
+          document.getElementById('instructionsheadericon').innerHTML = '<span class="' + selection.dataset.icon + '"></span>';
+          const overrideName = browserFromOptionId(selection.id);
+          const sameAsDetected = !overrideName || overrideName === browsername;
+          applyBrowser(sameAsDetected ? browsername : overrideName, sameAsDetected ? browserversion : '');
           Array.from(document.getElementsByClassName('instructions')).forEach(function (element) {
             element.style.display = 'none';
           });
           document.getElementById('instructions-' + selection.id).style.display = 'block';
         });
+
+        let platformplusbrowser = platform + '-' + browsername.replaceAll(' ', '-').toLowerCase();
+        let browserbutton = document.getElementById(platformplusbrowser);
+        (browserbutton || document.getElementById(platform + '-other')).selected = true;
+        browserSelect.dispatchEvent(new Event('change'));
       });
 
       if (!String.prototype.replaceAll) {
