@@ -2,10 +2,11 @@
 <html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="What is an Incognito Window/Private Browsing and how do I use it?" />
     <meta name="keywords" content="web, browser, settings, code, tracking, analytics, js, developer" />
     <meta name="author" content="Leo Herzog | herzog.tech" />
+    <link rel="canonical" href="https://privatebrows.ing/" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.purple.min.css" />
     <link rel="icon" href="favicon.svg" />
     <script async src="https://kit.fontawesome.com/24afb12102.js"></script>
@@ -69,139 +70,138 @@
       <article>
         <header>
           <h2 id="instructionsheader">
-            <span id="instructionsheadericon"></span>
-            <select id="browser" aria-label="Choose your browser">
-              <option disabled>Mobile</option>
-              <option id="mobile-safari" data-icon="fa-brands fa-safari">Safari for iOS</option>
-              <option id="mobile-chrome" data-icon="fa-brands fa-chrome">Google Chrome</option>
-              <option id="mobile-firefox" data-icon="fa-brands fa-firefox-browser">Mozilla Firefox</option>
-              <option id="mobile-other" data-icon="fa-regular fa-mobile">Other Mobile Browsers</option>
-              <option disabled>Tablet</option>
-              <option id="tablet-safari" data-icon="fa-brands fa-safari">Safari for iPad</option>
-              <option id="tablet-chrome" data-icon="fa-brands fa-chrome">Google Chrome</option>
-              <option id="tablet-firefox" data-icon="fa-brands fa-firefox-browser">Mozilla Firefox</option>
-              <option id="tablet-silk" data-icon="fa-brands fa-amazon">Silk Browser for Kindle</option>
-              <option id="tablet-other" data-icon="fa-regular fa-tablet">Other Tablet Browsers</option>
-              <option disabled>Desktop</option>
-              <option id="desktop-chrome" data-icon="fa-brands fa-chrome">Google Chrome</option>
-              <option id="desktop-firefox" data-icon="fa-brands fa-firefox-browser">Mozilla Firefox</option>
-              <option id="desktop-safari" data-icon="fa-brands fa-safari">Safari</option>
-              <option id="desktop-microsoft-edge" data-icon="fa-brands fa-edge">Microsoft Edge</option>
-              <option id="desktop-other" data-icon="fa-regular fa-laptop">Other Desktop Browsers</option>
+            <span id="instructionsheadericon" aria-hidden="true"></span>
+            <select id="browser" aria-label="Choose your browser" aria-controls="instructionspanel">
+              <optgroup label="Mobile">
+                <option id="mobile-safari" data-icon="fa-brands fa-safari">Safari for iOS</option>
+                <option id="mobile-chrome" data-icon="fa-brands fa-chrome">Google Chrome</option>
+                <option id="mobile-firefox" data-icon="fa-brands fa-firefox-browser">Mozilla Firefox</option>
+                <option id="mobile-other" data-icon="fa-regular fa-mobile">Other Mobile Browsers</option>
+              </optgroup>
+              <optgroup label="Tablet">
+                <option id="tablet-safari" data-icon="fa-brands fa-safari">Safari for iPad</option>
+                <option id="tablet-chrome" data-icon="fa-brands fa-chrome">Google Chrome</option>
+                <option id="tablet-firefox" data-icon="fa-brands fa-firefox-browser">Mozilla Firefox</option>
+                <option id="tablet-silk" data-icon="fa-brands fa-amazon">Silk Browser for Kindle</option>
+                <option id="tablet-other" data-icon="fa-regular fa-tablet">Other Tablet Browsers</option>
+              </optgroup>
+              <optgroup label="Desktop">
+                <option id="desktop-chrome" data-icon="fa-brands fa-chrome">Google Chrome</option>
+                <option id="desktop-firefox" data-icon="fa-brands fa-firefox-browser">Mozilla Firefox</option>
+                <option id="desktop-safari" data-icon="fa-brands fa-safari">Safari</option>
+                <option id="desktop-microsoft-edge" data-icon="fa-brands fa-edge">Microsoft Edge</option>
+                <option id="desktop-other" data-icon="fa-regular fa-laptop">Other Desktop Browsers</option>
+              </optgroup>
             </select>
           </h2>
         </header>
-        <section class="instructions" id="instructions-desktop-chrome">
-          <p>
-            Click the <mark><span class="fa-solid fa-ellipsis-vertical">⋮</span></mark> three-dots menu in the top right corner of your browser and click <mark>New Incognito Window</mark>
-          </p>
-          <p>or press <kbd class="modifier">Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>N</kbd> on your keyboard. That's it!</p>
-          <p>The Incognito Window will have a <span class="fa-solid fa-user-secret">🕵️</span> secret agent icon in the top left, plus a different, dark color to distinguish it from your other windows.</p>
-        </section>
+        <div id="instructionspanel" role="region" aria-label="Instructions for your browser">
+          <section class="instructions" id="instructions-desktop-chrome">
+            <p>
+              Click the <mark><span class="fa-solid fa-ellipsis-vertical" aria-hidden="true">⋮</span></mark> three-dots menu in the top right corner of your browser and click <mark>New Incognito Window</mark>
+            </p>
+            <p>or press <kbd class="modifier">Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>N</kbd> on your keyboard. That's it!</p>
+            <p>The Incognito Window will have a <span class="fa-solid fa-user-secret" aria-hidden="true">🕵️</span> secret agent icon in the top left, plus a different, dark color to distinguish it from your other windows.</p>
+          </section>
 
-        <section class="instructions" id="instructions-desktop-firefox">
-          <p>
-            Click the <mark><span class="fa-solid fa-bars">☰</span></mark> hamburger menu in the top right corner of your browser and click <mark>New private window</mark>
-          </p>
-          <p>or press <kbd class="modifier">Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> on your keyboard. That's it!</p>
-          <p>The Private Browsing window will have a <span class="fa-solid fa-mask" style="color: purple">🎭</span> purple mask icon in the top right to distinguish it from your other windows.</p>
-        </section>
+          <section class="instructions" id="instructions-desktop-firefox">
+            <p>
+              Click the <mark><span class="fa-solid fa-bars" aria-hidden="true">☰</span></mark> hamburger menu in the top right corner of your browser and click <mark>New private window</mark>
+            </p>
+            <p>or press <kbd class="modifier">Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> on your keyboard. That's it!</p>
+            <p>The Private Browsing window will have a <span class="fa-solid fa-mask" style="color: purple" aria-hidden="true">🎭</span> purple mask icon in the top right to distinguish it from your other windows.</p>
+          </section>
 
-        <section class="instructions" id="instructions-desktop-safari">
-          <p>Click <mark>File</mark> in the top left corner of your screen and click <mark>New Private Window</mark></p>
-          <p>or press <kbd class="modifier">⌘</kbd> + <kbd>Shift</kbd> + <kbd>N</kbd> on your keyboard. That's it!</p>
-          <p>The Private Browsing window will have a dark grey address bar to distinguish it from your other windows.</p>
-        </section>
+          <section class="instructions" id="instructions-desktop-safari">
+            <p>Click <mark>File</mark> in the top left corner of your screen and click <mark>New Private Window</mark></p>
+            <p>or press <kbd class="modifier">⌘</kbd> + <kbd>Shift</kbd> + <kbd>N</kbd> on your keyboard. That's it!</p>
+            <p>The Private Browsing window will have a dark grey address bar to distinguish it from your other windows.</p>
+          </section>
 
-        <section class="instructions" id="instructions-desktop-microsoft-edge">
-          <p>
-            Click the <mark><span class="fa-solid fa-ellipsis">…</span></mark> three-dots menu in the top right corner of your browser and click <mark><span class="fa-solid fa-browser">🗔</span> New InPrivate window</mark>
-          </p>
-          <p>or press <kbd class="modifier">Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> on your keyboard. That's it!</p>
-          <p>The InPrivate window will say "InPrivate" in the top right, and will have a different, dark color distinguish it from your other windows.</p>
-        </section>
+          <section class="instructions" id="instructions-desktop-microsoft-edge">
+            <p>
+              Click the <mark><span class="fa-solid fa-ellipsis" aria-hidden="true">…</span></mark> three-dots menu in the top right corner of your browser and click <mark><span class="fa-solid fa-browser" aria-hidden="true">🗔</span> New InPrivate window</mark>
+            </p>
+            <p>or press <kbd class="modifier">Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> on your keyboard. That's it!</p>
+            <p>The InPrivate window will say "InPrivate" in the top right, and will have a different, dark color distinguish it from your other windows.</p>
+          </section>
 
-        <section class="instructions" id="instructions-desktop-other">
-          <p>Instructions may vary depending on your web browser.</p>
-          <p>
-            Look around for a feature called "Private Browsing" in your browser's <mark><span class="fa-solid fa-bars">☰</span></mark> hamburger menu or <mark><span class="fa-solid fa-ellipsis-vertical">⋮</span></mark> three-dots menu.
-          </p>
-          <a class="browserhowtosearchquery" target="_blank"
-            ><button>Search for Instructions for <span class="browsername"></span></button
-          ></a>
-        </section>
+          <section class="instructions" id="instructions-desktop-other">
+            <p>Instructions may vary depending on your web browser.</p>
+            <p>
+              Look around for a feature called "Private Browsing" in your browser's <mark><span class="fa-solid fa-bars" aria-hidden="true">☰</span></mark> hamburger menu or <mark><span class="fa-solid fa-ellipsis-vertical" aria-hidden="true">⋮</span></mark> three-dots menu.
+            </p>
+            <a class="browserhowtosearchquery" role="button" target="_blank">Search for Instructions for <span class="browsername"></span></a>
+          </section>
 
-        <section class="instructions" id="instructions-tablet-safari">
-          <p>
-            Tap the <mark><span class="fa-solid fa-square-dashed-circle-plus">⧉</span></mark> overlapping squares icon in the top right corner of your screen and tap <mark>New Private Tab</mark>
-          </p>
-          <p>or press <kbd class="modifier">⌘</kbd> + <kbd>Shift</kbd> + <kbd>N</kbd> on a connected keyboard. That's it!</p>
-          <p>The Private Browsing window will have a dark grey address bar and black buttons instead of blue to distinguish it from your other windows.</p>
-        </section>
+          <section class="instructions" id="instructions-tablet-safari">
+            <p>
+              Tap the <mark><span class="fa-solid fa-square-dashed-circle-plus" aria-hidden="true">⧉</span></mark> overlapping squares icon in the top right corner of your screen and tap <mark>New Private Tab</mark>
+            </p>
+            <p>or press <kbd class="modifier">⌘</kbd> + <kbd>Shift</kbd> + <kbd>N</kbd> on a connected keyboard. That's it!</p>
+            <p>The Private Browsing window will have a dark grey address bar and black buttons instead of blue to distinguish it from your other windows.</p>
+          </section>
 
-        <section class="instructions" id="instructions-tablet-chrome">
-          <p>
-            Tap the <mark><span class="fa-solid fa-ellipsis-vertical">⋮</span></mark> three-dots menu in the top right corner of your browser and tap <mark>New Incognito Tab</mark>
-          </p>
-          <p>or press <kbd class="modifier">Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>N</kbd> on a connected keyboard. That's it!</p>
-          <p>The Incognito Window will have a <span class="fa-solid fa-user-secret">🕵️</span> secret agent icon in the top left, plus a different, dark color to distinguish it from your other windows.</p>
-        </section>
+          <section class="instructions" id="instructions-tablet-chrome">
+            <p>
+              Tap the <mark><span class="fa-solid fa-ellipsis-vertical" aria-hidden="true">⋮</span></mark> three-dots menu in the top right corner of your browser and tap <mark>New Incognito Tab</mark>
+            </p>
+            <p>or press <kbd class="modifier">Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>N</kbd> on a connected keyboard. That's it!</p>
+            <p>The Incognito Window will have a <span class="fa-solid fa-user-secret" aria-hidden="true">🕵️</span> secret agent icon in the top left, plus a different, dark color to distinguish it from your other windows.</p>
+          </section>
 
-        <section class="instructions" id="instructions-tablet-firefox">
-          <p>Open a <span class="fa-solid fa-circle-plus">⊕</span> New Tab and tap the <span class="fa-solid fa-mask">🎭</span> mask icon in the top right corner</p>
-          <p>or press <kbd class="modifier">Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> on a connected keyboard. That's it!</p>
-          <p>The the whole app will have a purple background to distinguish it from the normal mode.</p>
-        </section>
+          <section class="instructions" id="instructions-tablet-firefox">
+            <p>Open a <span class="fa-solid fa-circle-plus" aria-hidden="true">⊕</span> New Tab and tap the <span class="fa-solid fa-mask" aria-hidden="true">🎭</span> mask icon in the top right corner</p>
+            <p>or press <kbd class="modifier">Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> on a connected keyboard. That's it!</p>
+            <p>The the whole app will have a purple background to distinguish it from the normal mode.</p>
+          </section>
 
-        <section class="instructions" id="instructions-tablet-silk">
-          <p>
-            Tap the <mark><span class="fa-solid fa-ellipsis-vertical">⋮</span></mark> three-dots menu in the bottom right corner of your browser and tap <mark><span class="fa-solid fa-eye">👁</span> Enter Private Browsing</mark>
-          </p>
-          <p>or press <kbd class="modifier">Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>N</kbd> on a connected keyboard. That's it!</p>
-          <p>The the whole app will have a purple background to distinguish it from the normal mode.</p>
-        </section>
+          <section class="instructions" id="instructions-tablet-silk">
+            <p>
+              Tap the <mark><span class="fa-solid fa-ellipsis-vertical" aria-hidden="true">⋮</span></mark> three-dots menu in the bottom right corner of your browser and tap <mark><span class="fa-solid fa-eye" aria-hidden="true">👁</span> Enter Private Browsing</mark>
+            </p>
+            <p>or press <kbd class="modifier">Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>N</kbd> on a connected keyboard. That's it!</p>
+            <p>The the whole app will have a purple background to distinguish it from the normal mode.</p>
+          </section>
 
-        <section class="instructions" id="instructions-tablet-other">
-          <p>Instructions may vary depending on your web browser.</p>
-          <p>
-            Look around for a feature called "Private Browsing" in your browser's <mark><span class="fa-solid fa-bars">☰</span></mark> hamburger menu or <mark><span class="fa-solid fa-ellipsis-vertical">⋮</span></mark> three-dots menu.
-          </p>
-          <a class="browserhowtosearchquery" target="_blank"
-            ><button>Search for Instructions for <span class="browsername"></span></button
-          ></a>
-        </section>
+          <section class="instructions" id="instructions-tablet-other">
+            <p>Instructions may vary depending on your web browser.</p>
+            <p>
+              Look around for a feature called "Private Browsing" in your browser's <mark><span class="fa-solid fa-bars" aria-hidden="true">☰</span></mark> hamburger menu or <mark><span class="fa-solid fa-ellipsis-vertical" aria-hidden="true">⋮</span></mark> three-dots menu.
+            </p>
+            <a class="browserhowtosearchquery" role="button" target="_blank">Search for Instructions for <span class="browsername"></span></a>
+          </section>
 
-        <section class="instructions" id="instructions-mobile-safari">
-          <p>
-            Tap the <mark><span class="fa-solid fa-square-dashed-circle-plus">⧉</span></mark> overlapping squares icon in the bottom right corner of your screen and tap <mark>New Private Tab</mark>
-          </p>
-          <p>or press <kbd class="modifier">⌘</kbd> + <kbd>Shift</kbd> + <kbd>N</kbd> on your keyboard. That's it!</p>
-          <p>The Private Browsing window will have a dark grey address bar and black buttons instead of blue to distinguish it from your other windows.</p>
-        </section>
+          <section class="instructions" id="instructions-mobile-safari">
+            <p>
+              Tap the <mark><span class="fa-solid fa-square-dashed-circle-plus" aria-hidden="true">⧉</span></mark> overlapping squares icon in the bottom right corner of your screen and tap <mark>New Private Tab</mark>
+            </p>
+            <p>or press <kbd class="modifier">⌘</kbd> + <kbd>Shift</kbd> + <kbd>N</kbd> on your keyboard. That's it!</p>
+            <p>The Private Browsing window will have a dark grey address bar and black buttons instead of blue to distinguish it from your other windows.</p>
+          </section>
 
-        <section class="instructions" id="instructions-mobile-chrome">
-          <p>
-            Tap the <mark><span class="fa-solid fa-ellipsis-vertical">⋮</span></mark> three-dots menu in the top right corner of your browser and tap <mark>New Incognito Tab</mark>
-          </p>
-          <p>or press <kbd class="modifier">Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>N</kbd> on your keyboard. That's it!</p>
-          <p>The Incognito Window will have a <span class="fa-solid fa-user-secret">🕵️</span> secret agent icon in the top left, plus a different, dark color to distinguish it from your other windows.</p>
-        </section>
+          <section class="instructions" id="instructions-mobile-chrome">
+            <p>
+              Tap the <mark><span class="fa-solid fa-ellipsis-vertical" aria-hidden="true">⋮</span></mark> three-dots menu in the top right corner of your browser and tap <mark>New Incognito Tab</mark>
+            </p>
+            <p>or press <kbd class="modifier">Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>N</kbd> on your keyboard. That's it!</p>
+            <p>The Incognito Window will have a <span class="fa-solid fa-user-secret" aria-hidden="true">🕵️</span> secret agent icon in the top left, plus a different, dark color to distinguish it from your other windows.</p>
+          </section>
 
-        <section class="instructions" id="instructions-mobile-firefox">
-          <p>Open a <span class="fa-solid fa-circle-plus">⊕</span> New Tab and tap the <span class="fa-solid fa-mask">🎭</span> mask icon in the top right corner</p>
-          <p>or press <kbd class="modifier">Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> on your keyboard. That's it!</p>
-          <p>The the whole app will have a purple background to distinguish it from the normal mode.</p>
-        </section>
+          <section class="instructions" id="instructions-mobile-firefox">
+            <p>Open a <span class="fa-solid fa-circle-plus" aria-hidden="true">⊕</span> New Tab and tap the <span class="fa-solid fa-mask" aria-hidden="true">🎭</span> mask icon in the top right corner</p>
+            <p>or press <kbd class="modifier">Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> on your keyboard. That's it!</p>
+            <p>The the whole app will have a purple background to distinguish it from the normal mode.</p>
+          </section>
 
-        <section class="instructions" id="instructions-mobile-other">
-          <p>Instructions may vary depending on your web browser.</p>
-          <p>
-            Look around for a feature called "Private Browsing" in your browser's <mark><span class="fa-solid fa-bars">☰</span></mark> hamburger menu or <mark><span class="fa-solid fa-ellipsis-vertical">⋮</span></mark> three-dots menu.
-          </p>
-          <a class="browserhowtosearchquery" target="_blank"
-            ><button>Search for Instructions for <span class="browsername"></span></button
-          ></a>
-        </section>
+          <section class="instructions" id="instructions-mobile-other">
+            <p>Instructions may vary depending on your web browser.</p>
+            <p>
+              Look around for a feature called "Private Browsing" in your browser's <mark><span class="fa-solid fa-bars" aria-hidden="true">☰</span></mark> hamburger menu or <mark><span class="fa-solid fa-ellipsis-vertical" aria-hidden="true">⋮</span></mark> three-dots menu.
+            </p>
+            <a class="browserhowtosearchquery" role="button" target="_blank">Search for Instructions for <span class="browsername"></span></a>
+          </section>
+        </div>
       </article>
     </main>
     <div>
@@ -334,6 +334,9 @@
         let browserbutton = document.getElementById(platformplusbrowser);
         (browserbutton || document.getElementById(platform + '-other')).selected = true;
         browserSelect.dispatchEvent(new Event('change'));
+
+        // Only announce instruction swaps the visitor asked for, not the initial render
+        document.getElementById('instructionspanel').setAttribute('aria-live', 'polite');
       });
 
       if (!String.prototype.replaceAll) {
